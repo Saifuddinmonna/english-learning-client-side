@@ -1,28 +1,15 @@
 import React from "react";
+import { NavLink, useLoaderData } from "react-router-dom";
 
-const CoursesCard = ({ course }) => {
+const CoursesCard = () => {
+	const courseData = useLoaderData();
+	console.log(courseData);
 	return (
-		<div className="card w-96 bg-base-100 shadow-xl">
-			<figure>
-				<img src={course.pic} alt="Shoes" />
-			</figure>
-
-			<div className="card-body">
-				<h2 className="card-title">
-					{course.course}
-					<div className="badge badge-secondary">NEW</div>
-				</h2>
-				<p>If a dog chews shoes whose shoes does he choose?</p>
-				<div className="card-actions justify-end">
-					<div className="badge badge-outline">Fashion</div>
-					<div className="badge badge-outline">Products</div>
-				</div>
-				<button className="btn btn-outline btn-secondary">
-					Button
-				</button>
-				<button className="btn  w-full btn-secondary btn-circle">
-					Button
-				</button>
+		<div>
+			<div className=" ">
+				{courseData.map((course) => (
+					<div key={course.id}>{course.course}</div>
+				))}
 			</div>
 		</div>
 	);

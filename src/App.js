@@ -5,8 +5,9 @@ import Blog from "./components/Blog/Blog";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from "./components/Main/Main";
-import Header from "./components/Header/Header";
+
 import CoursesCard from "./components/Courses/CoursesCard";
+import CourseHolder from "./components/Courses/CourseHolder";
 
 function App() {
 	const router = createBrowserRouter([
@@ -21,29 +22,43 @@ function App() {
 				},
 
 				{
-					path: "*",
-					element: <ErrorPage></ErrorPage>,
-				},
-
-				{
 					path: "/blog",
 					element: <Blog></Blog>,
 				},
 				{
 					path: "/courses",
-					loader: () => {
+					loader: async () => {
 						return fetch(
 							"https://server-for-assignment-10.vercel.app/",
 						);
 					},
-
-					element: <Courses></Courses>,
+					element: <CourseHolder> </CourseHolder>,
 					children: [
 						{
-							path: "/courses/card",
-							element: <CoursesCard></CoursesCard>,
+							path: "/courses",
+							loader: async () => {
+								return fetch(
+									"https://server-for-assignment-10.vercel.app/",
+								);
+							},
+							element: <Courses></Courses>,
+							// children: [
+							// 	{
+							// 		path: "/courses/c",
+							// 		loader: () => {
+							// 			return fetch(
+							// 				"https://server-for-assignment-10.vercel.app/",
+							// 			);
+							// 		},
+							// 		element: <CoursesCard></CoursesCard>,
+							// 	},
+							// ],
 						},
 					],
+				},
+				{
+					path: "*",
+					element: <ErrorPage></ErrorPage>,
 				},
 			],
 		},

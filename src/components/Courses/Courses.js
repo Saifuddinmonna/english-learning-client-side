@@ -1,6 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
-import CoursesCard from "./CoursesCard";
+import { NavLink, Outlet, useLoaderData } from "react-router-dom";
 
 const Courses = () => {
 	const coursesData = useLoaderData();
@@ -8,12 +7,43 @@ const Courses = () => {
 
 	return (
 		<div>
-			<h1 className="text-primary fw-bolder ">
-				{coursesData.length} Courses are Available Now
-			</h1>
-			<div className="grid grid-cols-2 ">
+			<div className=" bg-orange-100 grid grid-cols-2 gap-2">
 				{coursesData.map((course) => (
-					<CoursesCard key={course.id} course={course}></CoursesCard>
+					<>
+						<div className="border rounded-md shadow-md p-2">
+							<div className="card w-full bg-base-100 shadow-xl">
+								<figure>
+									<img src={course.pic} alt="Shoes" />
+								</figure>
+								<div className="card-body">
+									<h2 className="card-title">
+										{course.course}
+										<div className="badge badge-secondary">
+											NEW
+										</div>
+									</h2>
+									<p>
+										If a dog chews shoes whose shoes does he
+										choose?
+									</p>
+									<div className="card-actions justify-end">
+										<div className="badge  badge-outline-primary">
+											<NavLink
+												to={`/course/${course.id}`}>
+												Get Premium Membership
+											</NavLink>
+										</div>
+										<div className="badge badge-outline-primary">
+											<NavLink
+												to={`/course/${course.id}`}>
+												Show Details
+											</NavLink>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</>
 				))}
 			</div>
 		</div>
