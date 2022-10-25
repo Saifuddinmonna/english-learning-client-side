@@ -27,7 +27,7 @@ function App() {
 				},
 				{
 					path: "/courses",
-					loader: async () => {
+					loader:  () => {
 						return fetch(
 							"https://server-for-assignment-10.vercel.app/",
 						);
@@ -36,7 +36,7 @@ function App() {
 					children: [
 						{
 							path: "/courses",
-							loader: async () => {
+							loader:  () => {
 								return fetch(
 									"https://server-for-assignment-10.vercel.app/",
 								);

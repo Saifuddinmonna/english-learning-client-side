@@ -22,11 +22,12 @@ const Courses = () => {
 											NEW
 										</div>
 									</h2>
-									<p>
-										If a dog chews shoes whose shoes does he
-										choose?
-									</p>
+									<p>{course.details}</p>
 									<div className="card-actions justify-end">
+										<p>
+											Monthly Subscription Price : tk
+											{course.price}
+										</p>
 										<div className="badge  badge-outline-primary">
 											<NavLink
 												to={`/course/${course.id}`}>
