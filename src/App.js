@@ -6,6 +6,7 @@ import ErrorPage from "./components/ErrorPage/ErrorPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from "./components/Main/Main";
 import Header from "./components/Header/Header";
+import CoursesCard from "./components/Courses/CoursesCard";
 
 function App() {
 	const router = createBrowserRouter([
@@ -30,8 +31,19 @@ function App() {
 				},
 				{
 					path: "/courses",
-					loader: async () => fetch("products.json"),
+					loader: () => {
+						return fetch(
+							"https://server-for-assignment-10.vercel.app/",
+						);
+					},
+
 					element: <Courses></Courses>,
+					children: [
+						{
+							path: "/courses/card",
+							element: <CoursesCard></CoursesCard>,
+						},
+					],
 				},
 			],
 		},
@@ -39,10 +51,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<RouterProvider router={router}>
-				
-				
-			</RouterProvider>
+			<RouterProvider router={router}></RouterProvider>
 		</div>
 	);
 }

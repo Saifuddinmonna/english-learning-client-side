@@ -1,11 +1,19 @@
-import React from 'react';
+import React from "react";
+import { useLoaderData } from "react-router-dom";
+import CoursesCard from "./CoursesCard";
 
 const Courses = () => {
-        return (
+	const coursesData = useLoaderData();
+	console.log(coursesData);
+	
+	return (
                 <div>
-                        <h1>this is courses </h1>
-                </div>
-        );
+                        {coursesData.length}
+			{coursesData.map((course) => (
+				<CoursesCard key={course.id} course={course}></CoursesCard>
+			))}
+		</div>
+	);
 };
 
 export default Courses;
