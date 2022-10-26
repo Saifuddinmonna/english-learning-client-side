@@ -9,6 +9,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+import { Image } from "react-bootstrap";
 
 const Header = () => {
 	const { user, Signouthandle } = useContext(AuthContext);
@@ -98,11 +99,7 @@ const Header = () => {
 					</Nav>
 				</Navbar.Collapse>
 
-				<input
-					type="checkbox"
-					className="toggle toggle-accent"
-					checked
-				/>
+				<input type="checkbox" className="toggle toggle-accent" />
 			</Container>
 		</Navbar>
 	);
