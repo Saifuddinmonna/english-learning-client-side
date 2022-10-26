@@ -11,7 +11,20 @@ import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Header = () => {
-	const {user}=useContext(AuthContext)
+	const { user, Signouthandle } = useContext(AuthContext);
+
+	const handleSignouthandle = () => {
+		Signouthandle()
+			.then((result) => {
+				// Sign-out successful.
+				const user = result.user;
+				console.log(user);
+			})
+			.catch((error) => {
+				console.log(error.message);
+				// An error happened.
+			});
+	};
 	return (
 		<Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
 			<Container>
@@ -61,22 +74,31 @@ const Header = () => {
 						</Nav.Link>
 					</Nav>
 					<Nav>
-						<Nav.Link href="#deets">Light</Nav.Link>
 						<Nav.Link eventKey={2} href="#memes">
-							Dark
-						</Nav.Link>
-						<Nav.Link eventKey={2} href="#memes">
-							{user.displayName}
+							{user?.displayName} {user?.email}
 						</Nav.Link>
 						<span className="px-2">
 							<div className="avatar">
 								<div className="w-12 mask mask-hexagon">
-									<img src="logo.png" alt="" />
+									<img src={user?.photoURL} alt="" />
 								</div>
+								<button onClick={handleSignouthandle}>
+									SignOut
+								</button>
 							</div>
 						</span>
 					</Nav>
 				</Navbar.Collapse>
+				
+					
+						
+						<input
+							type="checkbox"
+							className="toggle toggle-accent"
+							checked
+						/>
+					
+				
 			</Container>
 		</Navbar>
 	);

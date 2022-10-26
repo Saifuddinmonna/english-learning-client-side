@@ -1,9 +1,57 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Form, Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Login = () => {
+	const {
+		signinWithGoogle,
+		signinWithGithub,
+		functionsignInWithEmailAndPassword,
+	} = useContext(AuthContext);
+
+	const handlefunctionsignInWithEmailAndPassword = (e) => {
+		e.preventDefault();
+		const form = e.target;
+		const email = form.email.value;
+		const password = form.password.value;
+		console.log("emailpassword", email, password);
+		functionsignInWithEmailAndPassword(email, password)
+			.then((result) => {
+				const user = result.user;
+				console.log(user);
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+			});
+		form.value = " ";
+	};
+
+	const handleGoogleSignin = () => {
+		signinWithGoogle()
+			.then((result) => {
+				const user = result.user;
+				console.log(user);
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+			});
+	};
+	const handleGithubSignin = () => {
+		signinWithGithub()
+			.then((result) => {
+				const user = result.user;
+				console.log(user);
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+			});
+	};
+
 	return (
 		<div>
 			<h1>this is login</h1>
@@ -15,7 +63,10 @@ const Login = () => {
 						<p className="py-6">Please Login! to see the content</p>
 					</div>
 					<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-						<form action="/events" className="card-body">
+						<form
+							onSubmit={handlefunctionsignInWithEmailAndPassword}
+							action="/events"
+							className="card-body">
 							<div className="form-control">
 								<label className="label">
 									<span className="label-text">Email</span>
@@ -56,25 +107,26 @@ const Login = () => {
 							<div className="form-control mt-6">
 								<button
 									type="submit"
-									className="btn btn-primary">
+									className="btn btn-outline-primary w-full">
 									Login
 								</button>
 							</div>
-							<div className="form-control mt-6">
-								<button
-									type="submit"
-									className="btn btn-primary">
-									Login with Google
-								</button>
-							</div>
-							<div className="form-control mt-6">
-								<button
-									type="submit"
-									className="btn btn-primary">
-									Login in Github
-								</button>
-							</div>
 						</form>
+
+						<div className="form-control mt-6">
+							<button
+								onClick={handleGoogleSignin}
+								className="btn btn-outline-primary w-full">
+								Login with Google
+							</button>
+						</div>
+						<div className="form-control mt-6">
+							<button
+								onClick={handleGithubSignin}
+								className="btn btn-outline-primary w-full">
+								Login in Github
+							</button>
+						</div>
 					</div>
 					<FontAwesomeIcon icon="fa-brands fa-google" />
 					<i class="fa-brands fa-google"></i>
