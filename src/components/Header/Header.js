@@ -56,16 +56,7 @@ const Header = () => {
 								to="/blog">
 								Blog
 							</NavLink>
-							<NavLink
-								className="px-2 text-decoration-none text-white"
-								to="/signup">
-								Signup
-							</NavLink>
-							<NavLink
-								className="px-2 text-decoration-none text-white"
-								to="/login">
-								Login
-							</NavLink>
+
 							<NavLink
 								className="px-2 text-decoration-none text-white"
 								to="/faq">
@@ -74,31 +65,44 @@ const Header = () => {
 						</Nav.Link>
 					</Nav>
 					<Nav>
-						<Nav.Link eventKey={2} href="#memes">
-							{user?.displayName} {user?.email}
-						</Nav.Link>
-						<span className="px-2">
-							<div className="avatar">
-								<div className="w-12 mask mask-hexagon">
-									<img src={user?.photoURL} alt="" />
-								</div>
-								<button onClick={handleSignouthandle}>
-									SignOut
-								</button>
-							</div>
-						</span>
+						{!user?.uid ? (
+							<>
+								<NavLink
+									className="px-2 text-decoration-none text-white"
+									to="/signup">
+									Signup
+								</NavLink>
+								<NavLink
+									className="px-2 text-decoration-none text-white"
+									to="/login">
+									Login
+								</NavLink>
+							</>
+						) : (
+							<>
+								<Nav.Link eventKey={2} href="#memes">
+									{user?.displayName} {user?.email}
+								</Nav.Link>
+								<span className="px-2">
+									<div className="avatar">
+										<div className="w-12 mask mask-hexagon">
+											<img src={user?.photoURL} alt="" />
+										</div>
+										<button onClick={handleSignouthandle}>
+											SignOut
+										</button>
+									</div>
+								</span>
+							</>
+						)}
 					</Nav>
 				</Navbar.Collapse>
-				
-					
-						
-						<input
-							type="checkbox"
-							className="toggle toggle-accent"
-							checked
-						/>
-					
-				
+
+				<input
+					type="checkbox"
+					className="toggle toggle-accent"
+					checked
+				/>
 			</Container>
 		</Navbar>
 	);
