@@ -1,6 +1,8 @@
 import React from "react";
 import { Form, Link } from "react-router-dom";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Login = () => {
 	return (
 		<div>
@@ -13,7 +15,7 @@ const Login = () => {
 						<p className="py-6">Please Login! to see the content</p>
 					</div>
 					<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-						<Form  className="card-body">
+						<form action="/events" className="card-body">
 							<div className="form-control">
 								<label className="label">
 									<span className="label-text">Email</span>
@@ -52,12 +54,30 @@ const Login = () => {
 								</label>
 							</div>
 							<div className="form-control mt-6">
-								<button type="submit" className="btn btn-primary">
+								<button
+									type="submit"
+									className="btn btn-primary">
 									Login
 								</button>
 							</div>
-						</Form>
+							<div className="form-control mt-6">
+								<button
+									type="submit"
+									className="btn btn-primary">
+									Login with Google
+								</button>
+							</div>
+							<div className="form-control mt-6">
+								<button
+									type="submit"
+									className="btn btn-primary">
+									Login in Github
+								</button>
+							</div>
+						</form>
 					</div>
+					<FontAwesomeIcon icon="fa-brands fa-google" />
+					<i class="fa-brands fa-google"></i>
 				</div>
 			</div>
 		</div>
