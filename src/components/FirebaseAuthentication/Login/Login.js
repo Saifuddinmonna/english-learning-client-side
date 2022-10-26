@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Form, Link } from "react-router-dom";
+import { FaBeer, FaGoogle, FaGithub } from "react-icons/fa";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
@@ -116,7 +117,10 @@ const Login = () => {
 						<div className="form-control mt-6">
 							<button
 								onClick={handleGoogleSignin}
-								className="btn btn-outline-primary w-full">
+								className="btn btn-outline-primary w-full flex align-middle text-right justify-center">
+								<span className="pt-2">
+									<FaGoogle className="p-0 m-0 fs-3 inline-block" />
+								</span>{" "}
 								Login with Google
 							</button>
 						</div>
@@ -124,12 +128,13 @@ const Login = () => {
 							<button
 								onClick={handleGithubSignin}
 								className="btn btn-outline-primary w-full">
+								<span>
+									<FaGithub className="p-0 m-0 fs-3 inline-block"></FaGithub>
+								</span>{" "}
 								Login in Github
 							</button>
 						</div>
 					</div>
-					<FontAwesomeIcon icon="fa-brands fa-google" />
-					<i class="fa-brands fa-google"></i>
 				</div>
 			</div>
 		</div>
