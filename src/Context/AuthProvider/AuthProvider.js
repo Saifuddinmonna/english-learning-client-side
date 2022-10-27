@@ -17,10 +17,18 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
+	
+
 	const createUser = (email, password) => {
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
+	const [premiumAccess, setPremiumAccess] = useState([]);
+	const handlepremiumAccess = (cart) => {
+	return setPremiumAccess(cart);
+	};
+	console.log("from auth provider", premiumAccess);
 
+	
 	const providerGoogle = new GoogleAuthProvider();
 	const providerGithub = new GithubAuthProvider();
 
@@ -49,6 +57,14 @@ const AuthProvider = ({ children }) => {
 		};
 	}, []);
 
+
+
+
+
+	
+
+
+
 	const authInfo = {
 		user,
 		createUser,
@@ -56,6 +72,8 @@ const AuthProvider = ({ children }) => {
 		signinWithGithub,
 		Signouthandle,
 		functionsignInWithEmailAndPassword,
+		handlepremiumAccess,
+		premiumAccess,
 	};
 
 	return (

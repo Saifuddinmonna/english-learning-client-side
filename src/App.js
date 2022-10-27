@@ -11,6 +11,7 @@ import CourseHolder from "./components/Courses/CourseHolder";
 import Signup from "./components/FirebaseAuthentication/Signup/Signup";
 import FAQ from "./components/FAQ/FAQ";
 import Course from "./components/Courses/Course";
+import CheckOut from "./components/Header/CheckOut/CheckOut";
 
 function App() {
 	const router = createBrowserRouter([
@@ -69,12 +70,15 @@ function App() {
 								const nid = parseInt(id);
 								console.log(typeof nid);
 								const url = `https://server-for-assignment-10.vercel.app/courses/${id}`;
-								console.log( 'url test',url);
-								return fetch(url
-									
-								);
+								console.log("url test", url);
+								return fetch(url);
 							},
 							element: <Course></Course>,
+						},
+						{
+							path: "/courses/course/checkout",
+
+							element: <CheckOut></CheckOut>,
 						},
 					],
 				},

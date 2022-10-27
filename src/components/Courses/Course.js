@@ -1,33 +1,64 @@
 import React from "react";
+import { useState } from "react";
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Course = () => {
-	const course = useLoaderData();
-	console.log("this is for signle page course details", course);
+	const singleCourse = useLoaderData();
+
+
+	const [cart, setCart] = useState([]);
+
+	const { id,pic,details,course}=singleCourse
+	const { handleAddtoCart, handlepremiumAccess } = useContext(AuthContext);
+
+	const handlehandleAddtoCart =(id) => {
+		console.log('id frim details handoler', singleCourse)
+		
+		
+			let newCart = [];
+			const exists = cart.find((coursename) => coursename === course);
+			if (!exists) {
+				
+				newCart = [...cart, course];
+			} else {
+				alert("You Already a Premium Access")
+			}
+
+			setCart(newCart);
+			handlepremiumAccess(cart);
+			console.log('premium access', cart);
+		
+		}
+
+	console.log("this is for signle page singleCourse details", singleCourse);
 	return (
 		<div className="border shadow rounded-md m-2 p-3">
-			<p>{course.id}</p>
+			
 			<div className="card w-full bg-base-100 shadow-xl">
 				<header className="border rounded shadow-sm m-2 p-2 position-relative ">
-					<h2>{course.course}</h2>
+					<h2>{singleCourse.course}</h2>
 					<button className="position-absolute  top-1 right-1 btn btn-outline btn-primary rounded-circle text-white btn-sm">
 						{" "}
 						Make Pdf
 					</button>
 					<div>
 						<p className="border shadow rounded-md m-1 p-1">
-							{course.details}
+							{singleCourse.details}
 						</p>
 					</div>
 				</header>
 				<figure className="border rounded shadow-sm m-2 p-2 ">
-					<img src={course.pic} alt="Shoes" />
+					<img src={singleCourse.pic} alt="Shoes" />
 				</figure>
 				<div className="border rounded shadow-sm m-2 p-2 text-justify">
-					<p>{course.moredetails}</p>
+					<p>{singleCourse.moredetails}</p>
 
 					<div className="card-actions justify-end">
-						<button className=" btn bg-red-500   btn-warning w-full">
+						<button
+							onClick={() => handlehandleAddtoCart(singleCourse.id)}
+							className=" btn bg-red-500   btn-warning w-full">
 							Get Premium Access
 						</button>
 					</div>

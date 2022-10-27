@@ -63,6 +63,11 @@ const Header = () => {
 								to="/faq">
 								FAQ
 							</NavLink>
+							<NavLink
+								className="px-2 text-decoration-none text-white"
+								to="/courses/course/checkout">
+								CheckOut
+							</NavLink>
 						</Nav.Link>
 					</Nav>
 					<Nav>
