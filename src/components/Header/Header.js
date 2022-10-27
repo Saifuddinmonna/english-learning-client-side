@@ -82,14 +82,16 @@ const Header = () => {
 						) : (
 							<>
 								<Nav.Link eventKey={2} href="#memes">
-									{user?.displayName} {user?.email}
+									{user?.displayName || user?.email}
 								</Nav.Link>
 								<span className="px-2">
-									<div className="avatar">
+									<div className="avatar align-items-center">
 										<div className="w-12 mask mask-hexagon">
 											<img src={user?.photoURL} alt="" />
 										</div>
-										<button onClick={handleSignouthandle}>
+										<button
+											className=" btn rounded-full btn-outline-warning  btn-sm text-white mx-2 px-2"
+											onClick={handleSignouthandle}>
 											SignOut
 										</button>
 									</div>
