@@ -36,7 +36,7 @@ const Courses = () => {
 										</div>
 										<div className="badge badge-outline-primary">
 											<NavLink
-												to={`/course/${course.id}`}>
+												to={`/courses/course/${course.id}`}>
 												Show Details
 											</NavLink>
 										</div>
@@ -47,6 +47,7 @@ const Courses = () => {
 					</>
 				))}
 			</div>
+			<Outlet></Outlet>
 		</div>
 	);
 };

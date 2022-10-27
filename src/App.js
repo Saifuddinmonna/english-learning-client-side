@@ -7,17 +7,17 @@ import ErrorPage from "./components/ErrorPage/ErrorPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from "./components/Main/Main";
 
-import CoursesCard from "./components/Courses/CoursesCard";
 import CourseHolder from "./components/Courses/CourseHolder";
 import Signup from "./components/FirebaseAuthentication/Signup/Signup";
 import FAQ from "./components/FAQ/FAQ";
+import Course from "./components/Courses/Course";
 
 function App() {
 	const router = createBrowserRouter([
 		{
 			path: "/",
 			element: <Main></Main>,
-			errorElement:<ErrorPage></ErrorPage>,
+			errorElement: <ErrorPage></ErrorPage>,
 			children: [
 				{
 					path: "/home",
@@ -41,6 +41,7 @@ function App() {
 					path: "/faq",
 					element: <FAQ></FAQ>,
 				},
+
 				{
 					path: "/courses",
 					loader: () => {
@@ -58,24 +59,29 @@ function App() {
 								);
 							},
 							element: <Courses></Courses>,
-							// children: [
-							// 	{
-							// 		path: "/courses/c",
-							// 		loader: () => {
-							// 			return fetch(
-							// 				"https://server-for-assignment-10.vercel.app/",
-							// 			);
-							// 		},
-							// 		element: <CoursesCard></CoursesCard>,
-							// 	},
-							// ],
+							children: [],
+						},
+						{
+							path: "/courses/course/:id",
+
+							loader: ({ params }) => {
+								const id = params.id;
+								const nid = parseInt(id);
+								console.log(typeof nid);
+								const url = `https://server-for-assignment-10.vercel.app/courses/${id}`;
+								console.log( 'url test',url);
+								return fetch(url
+									
+								);
+							},
+							element: <Course></Course>,
 						},
 					],
 				},
-				{
-					path: "*",
-					element: <ErrorPage></ErrorPage>,
-				},
+				// {
+				// 	path: "*",
+				// 	element: <ErrorPage></ErrorPage>,
+				// },
 			],
 		},
 	]);

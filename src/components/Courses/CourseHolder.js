@@ -13,7 +13,7 @@ const CourseHolder = () => {
 					<div
 						className="border rounded py-2 btn btn-outline-info w-full "
 						key={course.id}>
-						<NavLink to={`/courses/${course.id}`}>
+						<NavLink to={`/courses/course/${course.id}`}>
 							{course.course}
 						</NavLink>
 					</div>
