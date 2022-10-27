@@ -17,9 +17,14 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
+	const [useroptionalname, setUseroptionalname] = useState(null);
+	const [userphotooptional, setUserphotooptional] = useState(null);
 	
 
-	const createUser = (email, password) => {
+	const createUser = (name, photo, email, password) => {
+		setUseroptionalname(name);
+		setUserphotooptional(photo);
+		console.log(userphotooptional, useroptionalname);
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
 	const [premiumAccess, setPremiumAccess] = useState([]);
@@ -28,7 +33,7 @@ const AuthProvider = ({ children }) => {
 	};
 	console.log("from auth provider", premiumAccess);
 
-	
+
 	const providerGoogle = new GoogleAuthProvider();
 	const providerGithub = new GithubAuthProvider();
 
@@ -59,7 +64,7 @@ const AuthProvider = ({ children }) => {
 
 
 
-
+	console.log(userphotooptional, useroptionalname);
 
 	
 
@@ -74,6 +79,8 @@ const AuthProvider = ({ children }) => {
 		functionsignInWithEmailAndPassword,
 		handlepremiumAccess,
 		premiumAccess,
+		userphotooptional,
+		useroptionalname,
 	};
 
 	return (

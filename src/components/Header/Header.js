@@ -13,7 +13,8 @@ import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import { Image } from "react-bootstrap";
 
 const Header = () => {
-	const { user, Signouthandle } = useContext(AuthContext);
+	const { user, Signouthandle, userphotooptional, useroptionalname } =
+		useContext(AuthContext);
 
 	const handleSignouthandle = () => {
 		Signouthandle()
@@ -21,6 +22,7 @@ const Header = () => {
 				// Sign-out successful.
 				const user = result.user;
 				console.log(user);
+				console.log("useroptionalname ", useroptionalname);
 			})
 			.catch((error) => {
 				console.log(error.message);
@@ -88,15 +90,19 @@ const Header = () => {
 						) : (
 							<>
 								<Nav.Link eventKey={2} href="#memes">
+									<small className="text-white">{useroptionalname}?</small>
 									{user?.displayName || user?.email}
 								</Nav.Link>
 								<span className="px-2">
 									<div className="avatar align-items-center">
 										<div className="w-12 mask mask-hexagon">
-												{user.photoURL?
-													
-											(<img src={user?.photoURL} alt="" />):(
-											<FaUserCheck className="p-0 m-0 fs-3 inline-block"></FaUserCheck>
+											{user.photoURL ? (
+												<img
+													src={user?.photoURL}
+													alt=""
+												/>
+											) : (
+												<FaUserCheck className="p-0 m-0 fs-3 inline-block"></FaUserCheck>
 											)}
 										</div>
 										<button

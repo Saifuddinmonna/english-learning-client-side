@@ -29,6 +29,7 @@ const Login = () => {
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
+				setErrorMessageDisplay(errorMessage);
 			});
 		form.value = " ";
 	};
@@ -54,6 +55,7 @@ const Login = () => {
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
+				setErrorMessageDisplay(errorMessage);
 			});
 	};
 
@@ -111,6 +113,12 @@ const Login = () => {
 									</Link>
 								</label>
 							</div>
+							<div className="border rounded-md shadow">
+								<small className="text-red-500">
+									{errorMessageDisplay}
+								</small>
+								{/* <small>{errorMessageDisplaycode}</small> */}
+							</div>
 							<div className="form-control mt-6">
 								<button
 									type="submit"
@@ -119,10 +127,7 @@ const Login = () => {
 								</button>
 							</div>
 						</form>
-						<small className="text-red-500">
-							{errorMessageDisplay}
-						</small>
-						{/* <small>{errorMessageDisplaycode}</small> */}
+
 						<div className="form-control mt-6">
 							<button
 								onClick={handleGoogleSignin}
