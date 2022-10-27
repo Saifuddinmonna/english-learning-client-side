@@ -1,6 +1,6 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import React from "react";
-import { BeakerIcon } from "@heroicons/react/24/solid";
+
 
 const Blog = () => {
 	return (

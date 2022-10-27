@@ -88,10 +88,10 @@ function App() {
 						},
 					],
 				},
-				// {
-				// 	path: "*",
-				// 	element: <ErrorPage></ErrorPage>,
-				// },
+				{
+					path: "*",
+					element: <ErrorPage></ErrorPage>,
+				},
 			],
 		},
 	]);

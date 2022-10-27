@@ -23,22 +23,20 @@ const Courses = () => {
 										</div>
 									</h2>
 									<p>{course.details}</p>
-									<div className="card-actions justify-end">
+									<div className="">
 										<p>
 											Monthly Subscription Price : tk
 											{course.price}
 										</p>
-										<div className="badge  badge-outline-primary">
-											<NavLink
-												to={`/course/${course.id}`}>
-												Get Premium Membership
-											</NavLink>
-										</div>
-										<div className="badge badge-outline-primary">
-											<NavLink
-												to={`/courses/course/${course.id}`}>
-												Show Details
-											</NavLink>
+
+										<div className="">
+											<button className=" d-block btn w-full   btn-info">
+												<NavLink
+													className=" text-decoration-none"
+													to={`/courses/course/${course.id}`}>
+													Show Details
+												</NavLink>
+											</button>
 										</div>
 									</div>
 								</div>

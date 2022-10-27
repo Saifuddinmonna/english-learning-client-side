@@ -11,11 +11,15 @@ const CourseHolder = () => {
 				<h1>{coursesloder.length} Courses Are Available Now</h1>
 				{coursesloder.map((course) => (
 					<div
-						className="border rounded py-2 btn btn-outline-info w-full "
+						className="border rounded py-2  w-full "
 						key={course.id}>
-						<NavLink to={`/courses/course/${course.id}`}>
-							{course.course}
-						</NavLink>
+						<button className="w-full btn btn-outline-info">
+							<NavLink
+								className="text-decoration-none"
+								to={`/courses/course/${course.id}`}>
+								{course.course}
+							</NavLink>
+						</button>
 					</div>
 				))}
 			</div>
