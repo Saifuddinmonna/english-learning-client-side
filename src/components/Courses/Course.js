@@ -33,13 +33,28 @@ const Course = () => {
 		}
 
 	console.log("this is for signle page singleCourse details", singleCourse);
+	 const onButtonClickpdf = ({id}) => {
+			// using Java Script method to get PDF file
+		 const url = `https://server-for-assignment-10.vercel.app/courses/${id}`;
+			fetch(url).then((response) => {
+				response.blob().then((blob) => {
+					// Creating new object of PDF file
+					const fileURL = window.URL.createObjectURL(blob);
+					// Setting various property values
+					let alink = document.createElement("a");
+					alink.href = fileURL;
+					alink.download = "SamplePDF.pdf";
+					alink.click();
+				});
+			});
+		};
 	return (
 		<div className="border shadow rounded-md m-2 p-3">
 			
 			<div className="card w-full bg-base-100 shadow-xl">
 				<header className="border rounded shadow-sm m-2 p-2 position-relative ">
 					<h2>{singleCourse.course}</h2>
-					<button className="position-absolute  top-1 right-1 btn btn-outline btn-primary rounded-circle text-white btn-sm">
+					<button onClick={()=>onButtonClickpdf(id)} className="position-absolute  top-1 right-1 btn btn-outline btn-primary rounded-circle text-white btn-sm">
 						{" "}
 						Make Pdf
 					</button>
