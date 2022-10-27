@@ -17,6 +17,7 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true);
 	const [useroptionalname, setUseroptionalname] = useState(null);
 	const [userphotooptional, setUserphotooptional] = useState(null);
 	
@@ -56,6 +57,7 @@ const AuthProvider = ({ children }) => {
 		const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
 			console.log("user inside state", currentuser);
 			setUser(currentuser);
+			setLoading(false);
 		});
 		return () => {
 			unsubscribe();
@@ -81,6 +83,7 @@ const AuthProvider = ({ children }) => {
 		premiumAccess,
 		userphotooptional,
 		useroptionalname,
+		loading,
 	};
 
 	return (

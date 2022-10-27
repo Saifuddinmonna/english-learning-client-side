@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBeer, FaGoogle, FaGithub } from "react-icons/fa";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,6 +14,13 @@ const Login = () => {
 		signinWithGithub,
 		functionsignInWithEmailAndPassword,
 	} = useContext(AuthContext);
+	const location = useLocation();
+	const from = location.state?.from?.pathname || "/";
+	const navigate = useNavigate();
+
+
+
+
 
 	const handlefunctionsignInWithEmailAndPassword = (e) => {
 		e.preventDefault();
@@ -25,6 +32,9 @@ const Login = () => {
 			.then((result) => {
 				const user = result.user;
 				console.log(user);
+				form.reset();
+				navigate(from,{replace:true})
+
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -39,6 +49,8 @@ const Login = () => {
 			.then((result) => {
 				const user = result.user;
 				console.log(user);
+				
+
 			})
 			.catch((error) => {
 				const errorCode = error.code;

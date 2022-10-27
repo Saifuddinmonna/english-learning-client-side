@@ -12,6 +12,7 @@ import Signup from "./components/FirebaseAuthentication/Signup/Signup";
 import FAQ from "./components/FAQ/FAQ";
 import Course from "./components/Courses/Course";
 import CheckOut from "./components/Header/CheckOut/CheckOut";
+import PrivateRoute from "./Routes/PrivateRoute";
 
 function App() {
 	const router = createBrowserRouter([
@@ -78,7 +79,12 @@ function App() {
 						{
 							path: "/courses/course/checkout",
 
-							element: <CheckOut></CheckOut>,
+							element: (
+								<PrivateRoute>
+									{" "}
+									<CheckOut></CheckOut>
+								</PrivateRoute>
+							),
 						},
 					],
 				},
