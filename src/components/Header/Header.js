@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { FaBeer, BiUserCircle, FaGithub, FaUserCheck } from "react-icons/fa";
 
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
@@ -92,7 +93,11 @@ const Header = () => {
 								<span className="px-2">
 									<div className="avatar align-items-center">
 										<div className="w-12 mask mask-hexagon">
-											<img src={user?.photoURL} alt="" />
+												{user.photoURL?
+													
+											(<img src={user?.photoURL} alt="" />):(
+											<FaUserCheck className="p-0 m-0 fs-3 inline-block"></FaUserCheck>
+											)}
 										</div>
 										<button
 											className=" btn rounded-full btn-outline-warning  btn-sm text-white mx-2 px-2"
