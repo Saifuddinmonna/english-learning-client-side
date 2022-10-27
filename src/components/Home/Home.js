@@ -5,7 +5,7 @@ import "./Home.css";
 const Home = () => {
 	return (
 		<div
-			className="hero min-h-screen"
+			className="hero min-h-screen m-2 p-2 border shadow-md"
 			style={{
 				backgroundImage: `url("https://unsplash.com/photos/oB2aEeE8s4A/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjN8fGxlYXJuaW5nJTIwZW5nbGlzaHxlbnwwfHx8fDE2NjY4ODE4NDE&force=true")`,
 			}}>

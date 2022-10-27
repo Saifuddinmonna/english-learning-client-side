@@ -5,11 +5,11 @@ import Header from "../Header/Header";
 
 const Main = () => {
 	return (
-		<div>
+		<div className=" grid align-items-center ">
 			<Header></Header>
 			<Outlet></Outlet>
 			<div
-				className="hero min-h-screen"
+				className="hero min-h-screen m-2 p-2 border shadow-md"
 				style={{
 					backgroundImage: `url("https://unsplash.com/photos/Z2ImfOCafFk/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MTR8fGxlYXJuaW5nJTIwZW5nbGlzaHxlbnwwfHx8fDE2NjY4ODE0NTQ&force=true")`,
 				}}>

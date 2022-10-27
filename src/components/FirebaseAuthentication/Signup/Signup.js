@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 
 const Signup = () => {
 	const { createUser } = useContext(AuthContext);
+	const [errorMessageDisplay, setErrorMessageDisplay] = useState();
+	const [errorMessageDisplaycode, setErrorMessageDisplaycode] = useState();
+	const [userName, setUserName] = useState();
+	const [userPhoto, setUserPhoto] = useState();
 	console.log(createUser);
 	const getFormValue = (e) => {
 		e.preventDefault();
@@ -13,17 +17,21 @@ const Signup = () => {
 		const photo = form.photo.value;
 		const email = form.email.value;
 		const password = form.password.value;
-		console.log(name,photo,email,password)
+		console.log(name, photo, email, password);
+		setUserName(name);
+		setUserPhoto(photo);
 		createUser(email, password)
 			.then((result) => {
 				const user = result.user;
-				console.log(user)
+				console.log(user);
 			})
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
-				console.log(errorMessage)
-		})
+				console.log(errorMessage);
+				setErrorMessageDisplay(errorMessage);
+				setErrorMessageDisplaycode(errorCode);
+			});
 	};
 
 	const handleCreateUser = () => {};
@@ -73,6 +81,7 @@ const Signup = () => {
 									placeholder="email"
 									className="input input-bordered"
 									Name="email"
+									required
 								/>
 							</div>
 							<div className="form-control">
@@ -84,13 +93,11 @@ const Signup = () => {
 									placeholder="password"
 									className="input input-bordered"
 									Name="password"
+									required
 								/>
 								<label className="label">
-									<NavLink
-										to="#"
-										className="label-text-alt link link-hover">
-										Forgot password?
-									</NavLink>
+									<small className="text-red-500">{errorMessageDisplay}</small>
+									{/* <small>{errorMessageDisplaycode}</small> */}
 								</label>
 								<label className="label">
 									Already have an account?

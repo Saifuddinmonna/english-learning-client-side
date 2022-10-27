@@ -4,8 +4,11 @@ import { FaBeer, FaGoogle, FaGithub } from "react-icons/fa";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
+import { useState } from "react";
 
 const Login = () => {
+	const [errorMessageDisplay, setErrorMessageDisplay] = useState();
+	const [errorMessageDisplaycode, setErrorMessageDisplaycode] = useState();
 	const {
 		signinWithGoogle,
 		signinWithGithub,
@@ -39,6 +42,7 @@ const Login = () => {
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
+				setErrorMessageDisplay(errorMessage);
 			});
 	};
 	const handleGithubSignin = () => {
@@ -77,6 +81,7 @@ const Login = () => {
 									placeholder="email"
 									className="input input-bordered"
 									name="email"
+									required
 								/>
 							</div>
 							<div className="form-control">
@@ -88,6 +93,7 @@ const Login = () => {
 									placeholder="password"
 									className="input input-bordered"
 									name="password"
+									required
 								/>
 								<label className="label">
 									<Link
@@ -113,7 +119,10 @@ const Login = () => {
 								</button>
 							</div>
 						</form>
-
+						<small className="text-red-500">
+							{errorMessageDisplay}
+						</small>
+						{/* <small>{errorMessageDisplaycode}</small> */}
 						<div className="form-control mt-6">
 							<button
 								onClick={handleGoogleSignin}
