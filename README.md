@@ -4,11 +4,11 @@
 
 ## project name is "Egnlish Learning"
 
-# 1 .client site Live-website link : https://english-learning-bdbb2.firebaseapp.com/
+# 1 .client site Live-website link  : https://english-learning-bdbb2.firebaseapp.com/
 
 #
 
-# 2. client site github link : https://github.com/programming-hero-web-course1/b610-learning-platform-client-side-Saifuddinmonna
+# 2. client site github link :  https://github.com/programming-hero-web-course1/b610-learning-platform-client-side-Saifuddinmonna
 
 #
 
