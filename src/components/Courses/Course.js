@@ -10,21 +10,26 @@ const Course = () => {
 			<div className="card w-full bg-base-100 shadow-xl">
 				<header className="border rounded shadow-sm m-2 p-2 position-relative ">
 					<h2>{course.course}</h2>
-					<button className="position-absolute  top-1 right-1 btn btn-outline btn-primary text-white btn-sm">
+					<button className="position-absolute  top-1 right-1 btn btn-outline btn-primary rounded-circle text-white btn-sm">
 						{" "}
 						Make Pdf
 					</button>
+					<div>
+						<p className="border shadow rounded-md m-1 p-1">
+							{course.details}
+						</p>
+					</div>
 				</header>
 				<figure className="border rounded shadow-sm m-2 p-2 ">
 					<img src={course.pic} alt="Shoes" />
 				</figure>
-				<div className="border rounded shadow-sm m-2 p-2 ">
-					<p>{course.detals}</p>
+				<div className="border rounded shadow-sm m-2 p-2 text-justify">
 					<p>{course.moredetails}</p>
 
 					<div className="card-actions justify-end">
-						<div className="badge badge-outline">Fashion</div>
-						<div className="badge badge-outline">Products</div>
+						<button className=" btn bg-red-500   btn-warning w-full">
+							Get Premium Access
+						</button>
 					</div>
 				</div>
 			</div>
