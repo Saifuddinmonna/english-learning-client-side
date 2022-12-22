@@ -6,7 +6,7 @@ import Tooltip from "react-bootstrap/Tooltip";
 
 const FAQ = () => {
 	return (
-		<div className="text-dark text-justify bg-stone-50 container rounded-md m-5 p-4 shadow-lg">
+		<div className=" flex flex-col justify-center align-items-center text-dark text-justify bg-stone-50  rounded-md m-3 p-3 shadow-lg">
 			<h1 className="border shadow rounded-full p-3">
 				Frequently asked questions
 			</h1>
@@ -232,7 +232,6 @@ const FAQ = () => {
 				<h3 className="text-capitalize text-primary"></h3>
 
 				<p className=" border rounded shadow p-3 m-3"></p>
-			
 			</div>
 		</div>
 	);

@@ -32,8 +32,18 @@ const Home = () => {
 						‘this and ‘that’) and when to use singular or plural
 						nouns.
 					</p>
-					<button className="btn tn-outline-info text-white fw-bolder">
-						<Link to={"/courses"}>Get Started</Link>
+					<button
+						onClick={() =>
+							window.scrollTo({
+								top: 0,
+								left: 0,
+								behavior: "smooth",
+							})
+						}
+						className="btn tn-outline-info text-decoration-none text-white fw-bolder">
+						<Link className="text-decoration-none" to={"/courses"}>
+							Get Started
+						</Link>
 					</button>
 				</div>
 			</div>

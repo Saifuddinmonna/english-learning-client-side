@@ -1,10 +1,14 @@
 import React, { useContext } from "react";
-import { Form, Link, useLocation, useNavigate } from "react-router-dom";
-import { FaBeer, FaGoogle, FaGithub } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 import { AuthContext } from "../../../Context/AuthProvider/AuthProvider";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const Login = () => {
 	const [errorMessageDisplay, setErrorMessageDisplay] = useState();
@@ -13,14 +17,13 @@ const Login = () => {
 		signinWithGoogle,
 		signinWithGithub,
 		functionsignInWithEmailAndPassword,
+		user,
 	} = useContext(AuthContext);
+
 	const location = useLocation();
 	const from = location.state?.from?.pathname || "/";
 	const navigate = useNavigate();
-
-
-
-
+	console.log(from);
 
 	const handlefunctionsignInWithEmailAndPassword = (e) => {
 		e.preventDefault();
@@ -32,25 +35,51 @@ const Login = () => {
 			.then((result) => {
 				const user = result.user;
 				console.log(user);
-				form.reset();
-				navigate(from,{replace:true})
 
+				form.reset("");
+
+				toast("login successful !", {
+					position: "top-right",
+					autoClose: 300,
+				});
+
+				setErrorMessageDisplay("");
+
+				// for (var i = 1; i < 10; i++) navigate(from, { replace: true });
+
+				// navigate(from, { replace: true });
 			})
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
 				setErrorMessageDisplay(errorMessage);
+				// form.reset("");
 			});
-		form.value = " ";
+		// navigate(from, { replace: true });
+
+		// setTimeout(function () {
+		// 	window.location.reload();
+		// }, 1600);
 	};
+
+	useEffect(() => {
+		if (user?.email) {
+			navigate(from, { replace: true });
+		}
+	}, [user?.email, from, navigate]);
 
 	const handleGoogleSignin = () => {
 		signinWithGoogle()
 			.then((result) => {
 				const user = result.user;
+				navigate(from, { replace: true });
 				console.log(user);
-				
+				toast("login successful !", {
+					position: "top-right",
+					autoClose: 400,
+				});
 
+				setErrorMessageDisplay("");
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -63,6 +92,12 @@ const Login = () => {
 			.then((result) => {
 				const user = result.user;
 				console.log(user);
+				toast("login successful  in Github!", {
+					position: "top-right",
+					autoClose: 400,
+				});
+				navigate(from, { replace: true });
+				setErrorMessageDisplay("");
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -73,9 +108,7 @@ const Login = () => {
 
 	return (
 		<div>
-			<h1>this is login</h1>
-
-			<div className="hero min-h-screen bg-base-200">
+			<div className="hero min-h-fit bg-base-200">
 				<div className="hero-content flex-col lg:flex-row-reverse">
 					<div className="text-center lg:text-left">
 						<h1 className="text-5xl font-bold">Login now!</h1>
@@ -120,8 +153,8 @@ const Login = () => {
 									Don't have an account?
 									<Link
 										to="/signup"
-										className="label-text-alt link link-hover">
-										Sign Up
+										className="label-text-alt link link-hover border border-red shadow m-1 btn btn-sm">
+										Register Now
 									</Link>
 								</label>
 							</div>
@@ -163,6 +196,7 @@ const Login = () => {
 					</div>
 				</div>
 			</div>
+			<ToastContainer />
 		</div>
 	);
 };

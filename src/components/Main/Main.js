@@ -9,13 +9,13 @@ const Main = () => {
 			<Header></Header>
 			<Outlet></Outlet>
 			<div
-				className="hero min-h-screen m-2 p-2 border shadow-md"
+				className="hero min-h-screen m-3 p-3 border shadow-md"
 				style={{
 					backgroundImage: `url("https://unsplash.com/photos/Z2ImfOCafFk/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MTR8fGxlYXJuaW5nJTIwZW5nbGlzaHxlbnwwfHx8fDE2NjY4ODE0NTQ&force=true")`,
 				}}>
 				<div className="hero-overlay bg-opacity-60"></div>
 				<div className="hero-content text-center text-neutral-content">
-					<div className="max-w-md">
+					<div className="max-w-xl">
 						<h1 className="mb-5 text-5xl font-bold">
 							Why learning English with us is different
 						</h1>
@@ -39,8 +39,16 @@ const Main = () => {
 							‘this and ‘that’) and when to use singular or plural
 							nouns.
 						</p>
-						<button className="btn btn-outline-info text-white fw-bolder">
-							<Link to={"/courses"}>Get Started</Link>
+						<button
+							onClick={() =>
+								window.scrollTo({
+									top: 0,
+									left: 0,
+									behavior: "smooth",
+								})
+							}
+							className="btn btn-outline btn-info text-decoration-none text-white fw-bolder">
+							<Link className="text-decoration-none" to={"/courses"}>Get Started</Link>
 						</button>
 					</div>
 				</div>

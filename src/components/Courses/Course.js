@@ -1,31 +1,61 @@
 import React from "react";
 import { useState } from "react";
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Navigate, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Course = () => {
 	const singleCourse = useLoaderData();
-
-	const [cart, setCart] = useState([]);
+	const navigate = useNavigate();
 
 	const { id, pic, details, course } = singleCourse;
-	const { handleAddtoCart, handlepremiumAccess } = useContext(AuthContext);
+	const {
+		handleAddtoCart,
 
-	const handlehandleAddtoCart = (id) => {
-		console.log("id frim details handoler", singleCourse);
+		premiumAccess,
+		handlehandleAddtoCart,
+	} = useContext(AuthContext);
 
-		let newCart = [];
-		const exists = cart.find((coursename) => coursename === course);
-		if (!exists) {
-			newCart = [...cart, course];
-		} else {
-			alert("You Already a Premium Access");
-		}
+	// const handlehandleAddtoCart = (id) => {
 
-		setCart(newCart);
-		handlepremiumAccess(cart);
-		console.log("premium access", cart);
+	// 	let newCart = [];
+	// 	const exists = cart.find((coursename) => coursename === course);
+	// 	if (!exists) {
+	// 		newCart = [...cart, course];
+	// 		handlepremiumAccess(newCart);
+	// 	} else {
+	// 		navigate("/courses/course/checkout");
+
+	// 		toast(" Thank for Click This for The Premium Access!", {
+	// 			position: "top-center",
+	// 			autoClose: 400,
+	// 			closeOnClick: true,
+	// 			pauseOnHover: true,
+	// 			draggable: true,
+	// 			progress: undefined,
+	// 			theme: "light",
+	// 		});
+	// 	}
+
+	// 	setCart(newCart);
+	// 	handlepremiumAccess(cart);
+	// 	console.log("premium access", cart);
+	// };
+
+	const handlepremiumAccess = (cart) => {
+		handlehandleAddtoCart({ course, id });
+
+		// setTimeout(function () {
+		// 	navigate("/courses/course/checkout");
+		// }, 100);
+		// setTimeout(function () {
+		// 	handlehandleAddtoCart({ singleCourse, course, id });
+		// }, 500);
+		// setTimeout(function () {
+		// 	window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+		// }, 1500);
 	};
 
 	console.log("this is for signle page singleCourse details", singleCourse);
@@ -69,9 +99,15 @@ const Course = () => {
 
 					<div className="card-actions justify-end">
 						<button
-							onClick={() =>
-								handlehandleAddtoCart(singleCourse.id)
-							}
+							onClick={() => {
+								handlepremiumAccess(
+									{
+										course,
+										id,
+									},
+									navigate("/courses/course/checkout"),
+								);
+							}}
 							className=" btn bg-red-500   btn-warning w-full">
 							Get Premium Access
 						</button>

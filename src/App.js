@@ -13,8 +13,13 @@ import FAQ from "./components/FAQ/FAQ";
 import Course from "./components/Courses/Course";
 import CheckOut from "./components/Header/CheckOut/CheckOut";
 import PrivateRoute from "./Routes/PrivateRoute";
+import { useContext, useState } from "react";
+import { AuthContext } from "./Context/AuthProvider/AuthProvider";
 
 function App() {
+	const { darkmode } = useContext(AuthContext);
+	// const [darkstate, setDarkstate] = useState((darkmode));
+	// console.log(darkstate);
 	const router = createBrowserRouter([
 		{
 			path: "/",
@@ -46,7 +51,7 @@ function App() {
 
 				{
 					path: "/courses",
-					loader: () => {
+					loader: async () => {
 						return fetch(
 							"https://server-for-assignment-10.vercel.app/",
 						);
@@ -55,7 +60,7 @@ function App() {
 					children: [
 						{
 							path: "/courses",
-							loader: () => {
+							loader: async () => {
 								return fetch(
 									"https://server-for-assignment-10.vercel.app/",
 								);
@@ -68,8 +73,6 @@ function App() {
 
 							loader: ({ params }) => {
 								const id = params.id;
-								const nid = parseInt(id);
-								console.log(typeof nid);
 								const url = `https://server-for-assignment-10.vercel.app/courses/${id}`;
 								console.log("url test", url);
 								return fetch(url);
@@ -97,7 +100,9 @@ function App() {
 	]);
 
 	return (
-		<div className="App">
+		<div
+			data-theme={darkmode=== (false || true) && "dark"}
+			className="App">
 			<RouterProvider router={router}></RouterProvider>
 		</div>
 	);

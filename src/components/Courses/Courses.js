@@ -7,10 +7,12 @@ const Courses = () => {
 
 	return (
 		<div>
-			<div className=" bg-orange-100 grid grid-cols-2 gap-2">
-				{coursesData.map((course) => (
+			<div className=" bg-orange-100 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-2">
+				{coursesData.map((course,Index) => (
 					<>
-						<div className="border rounded-md shadow-md p-2">
+						<div
+							key={Index}
+							className="border rounded-md shadow-md p-2">
 							<div className="card w-full bg-base-100 shadow-xl">
 								<figure>
 									<img src={course.pic} alt="Shoes" />
